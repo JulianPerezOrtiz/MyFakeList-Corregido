@@ -1,0 +1,56 @@
+{% extends "PlantillaBaseTwig.php.twig" %}
+{% block titulo %}
+    Registro - MyFakeList
+{% endblock %}
+{% block script %}
+    <script type="text/javascript" src="./script/busqueda.js"></script>
+    <script type="text/javascript" src="./script/registro.js"></script>
+{% endblock %}
+{% block contenido %}
+    <div class="center w-50">
+        <div id="resultadoBus">
+
+        </div>
+
+        {% if  error == true %}
+
+            <button type="button" class="btn btn-danger">Las contraseñas no coinciden</button>
+        {% endif %}
+        {% if corr == true %}
+            <button type="button" class="btn btn-success"> <a href="./index.php?ope=login&con=Usuario">Pueden iniciar sesion desde aqui.</a> </button>
+       {% endif %}
+
+        {% if errorInt == true %}
+            <button type="button" class="btn btn-success"> <a href="./index.php?ope=login&con=Usuario">Error interno del Servidor, intentalo de nuevo mas tarde.</a> </button>
+        {% endif %}
+
+        <p>Completa los datos para darte de alta en MyFakeList</p>
+
+
+        <form method="post">
+            <div class="form-group">
+                <label for="correo">Correo* (No es necesario confirmacion)</label>
+                <input type="email" class="form-control mail" name="correo" aria-describedby="emailHelp" placeholder="Introduce un Correo ">
+                <button type="button" class="btn btn-danger rep2" hidden>Este Correo esta en uso. <a href="login.php">¿Iniciar Sesion?</a> </button>
+            </div>
+            <div class="form-group">
+                <label for="contrasenia">Contraseña* (Contraseña transmitida y almacenada de forma segura con sh256)</label>
+                <input type="password" class="form-control" name="contrasenia" placeholder="Contraseña">
+            </div>
+            <div class="form-group">
+                <label for="confircontrasenia">Contraseña*</label>
+                <input type="password" class="form-control" name="confircontrasenia" placeholder="Vuelve a Repetirla ">
+            </div>
+            <div class="form-group " >
+                <label for="nick">Nick usuario*</label>
+                <input type="text" class="form-control nick"  name="nick" placeholder="Nickname">
+                <button type="button" class="btn btn-danger rep1" hidden>Este nombre de usuario no esta disponible. Elige otro!</button>
+                <div id="rep"></div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="env" >Send</button>
+        </form>
+    </div>
+
+
+{% endblock %}

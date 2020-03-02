@@ -1,0 +1,23 @@
+{% extends "PlantillaBaseTwig.php.twig" %}
+
+{% block titulo %}
+    Login - MyFakeList
+{% endblock %}
+
+{% block contenido %}
+
+    {% if error == true %}
+    <button type="button" class="btn btn-danger">Contraseña o usuario incorrectos</button>
+    {% endif %}
+    <form method="POST" action="index.php?ope=login&con=Usuario">
+        <div class="form-group">
+            <label for="correo">Correo*</label>
+            <input type="email" class="form-control" name="mail" aria-describedby="emailHelp" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+            <label for="contrasenia">Contraseña*</label>
+            <input type="password" class="form-control" name="pass" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+{% endblock %}

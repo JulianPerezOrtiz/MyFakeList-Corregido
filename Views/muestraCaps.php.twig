@@ -1,0 +1,15 @@
+
+            <div class="card-group ">
+            {% for item in dat %}
+                <div class="card">
+                    <img src=" {{ item.getImg }} " class="card-img-top img-fluid rounded mx-auto w-100 d-block" alt="...">
+                    <div class="card-body"><a href="index.php?ope=mostrarAni&con=Serie&id={{ item.getIdSe }}">
+                            {#  <div class="card-body"><a href="anime/ver/{{ item.getIdSe }}">#}
+                            <h5 class="card-title"> {{ item.getTitulo }}</h5> </a>
+                    </div>
+                </div>
+
+                {% endfor %}
+
+
+            </div>

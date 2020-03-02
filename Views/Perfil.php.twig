@@ -1,0 +1,109 @@
+{% extends "PlantillaBaseTwig.php.twig" %}
+{% block titulo  %} {{ usuario[0].getAlias()}} - MyFakeList {% endblock %}
+{% block script %}
+    <link rel="stylesheet" type="text/css" href="./css/estilos.css">
+    <script type="text/javascript" src="./script/peticion.js"></script>
+    <script type="text/javascript" src="./script/busqueda.js"></script>
+    <script type="text/javascript" src="./script/perfil.js"></script>
+
+{% endblock %}
+{% block contenido %}
+    {% set edit = true %}
+    {% if pervis[0].getIdUsu != usuario[0].getIdIsu %}
+   {% set usuario = pervis %}
+        {% set edit = false %}
+    {% endif %}
+    <div id="resultadoBus">
+
+    </div>
+    <br>
+<div class="alert alert-primary" role="alert">
+    Perfil de <b>{{ usuario[0].getAlias() }} </b>
+</div>
+    <br>
+<div class="row">
+
+
+    <div class="col-4 linea">
+
+        <img src="./avatares/{{usuario[0].getAvatar()}}" class="rounded mx-auto d-block w-100"  alt="Foto usuario">
+
+
+        <div class="infoSerie">
+            <p>
+                Detalles:</p>
+
+            <hr>
+            <li><b>Ubicacion:</b> {{usuario[0].getLocation()}} </li>
+            <li><b>Miembro desde :</b> {{usuario[0].getFecReg()}} </li>
+            <div><a class="btn btn-primary" href="./index.php?ope=lista&con=Serie&id={{usuario[0].getIdUsu()}}" role="button">Ver Lista Seguimiento</a>       </div>
+        </div>
+
+        {% if edit == true  %}
+        <div><button type="button" class="btn btn-primary btn1">Editar Perfil</button> </div>
+        {% endif %}
+
+
+
+    </div>
+    <div class="col-8">
+        <div><p>{{usuario[0].getAbout()}}</p></div>
+        <div class="infoSerie"><p>Series Favoritas:</p>
+
+            <ul>
+                {% set tienefav = false %}
+                {% for item in fav %}
+                <li><img src="{{ item.img }}" alt="Foto Serie" class="img-thumbnail" width="70vw" >  <a href="index.php?ope=mostrarAni&con=Serie&id={{ item.idSe }}"> {{ item.titulo }}</a></li>
+
+
+                </ul>
+                {% set tienefav = true %}
+               {% endfor %}
+            {% if tienefav == false %}
+                <p>No tiene ninguna serie favorita aun :(</p>
+            {% endif %}
+
+        </div>
+
+    </div>
+</div>
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Editando perfil</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body">
+                    <span>
+        <div>
+            <form method="post" enctype="multipart/form-data">
+                <div class="col form-group">
+                    <label for="img">Sube una foto en .jpg</label>
+                    <input type="file" class="form-control-file" id="img" name="img"
+                           accept="image/jpg, image/png" />
+                </div>
+                <div class="col">
+                    <button class="btn btn-primary uplpht" type="submit">Guardar Foto</button>
+                </div>
+            </form>
+
+
+        </div>
+                    </span>
+                    <div>Ubicacion: <span ><input type="text" class="form-control txt" data-ope1="location"  data-usu="{{usuario[0].getIdUsu()}}"  value="{{usuario[0].getLocation()}}" maxlength="69"></span></div>
+                    <div>Descripcion: <span ><input type="text" class="form-control txt" data-ope1="about" data-usu="{{usuario[0].getIdUsu()}}"  value="{{usuario[0].getAbout()}}" maxlength="499"></span></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

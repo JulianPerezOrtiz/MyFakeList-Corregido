@@ -1,0 +1,29 @@
+
+
+<h3>Resultados de la Busqueda</h3>
+{% set res = false %}
+<h2>Series:</h2>
+{% for item in dat %}
+<a href="index.php?ope=mostrarAni&con=Serie&id={{ item.getIdSe }}">
+    <h6 class="card-title"><img src="{{item.getImg}}" alt="Foto Serie" class="img-thumbnail" width="70vw" > {{item.getTitulo}}</h6> </a>
+{% set res = true %}
+{% endfor %}
+
+{% if res == false %}
+<h4>No se encuentran series con ese nombre</h4>
+{% endif %}
+
+{% set resU = false %}
+
+<h2>Usuarios:</h2>
+{% for item in usu %}
+    <a href="index.php?ope=mostarPerfil&con=Usuario&id={{item.getIdUsu}}">
+        <h6 class="card-title"><img src="./avatares/{{item.getAvatar}}" alt="Foto Usuario" class="img-thumbnail" width="70vw" >{{item.getAlias}}</h6> </a>
+    {% set resU = true %}
+
+{% endfor %}
+{% if resU == false %}
+    <h4>No se encuentran usuarios con ese nombre</h4>
+{% endif %}
+
+
