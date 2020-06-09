@@ -1,7 +1,7 @@
 # MyFakeList
 Proyecto PHP para la asignatura  Desarrollo Web en Entorno Servidor.
 
-Disponible en https://porrista.es/myfakelist/index.php
+Disponible en https://kumiko.es/myfakelist/index.php
 ## Introduccion
 
 La web consiste en el seguimiento de series de anime, en la cual podras podras consultar informacion sobre series, añadirlas a tu lista de seguimiento con diferentes estados, ver listas y perfiles de otros usuarios, entre otras cosas. Se puede visitar la pagina sin estar registrado, pudiendo consultar toda la informacion de las series, ver los perfiles de otros usuarios y sus listas de seguimiento. En el caso de estar registrado, podras añadir series a tu seguimiento. 
